@@ -3,7 +3,6 @@
 A small Flask website that takes someone's stats (age, sex, weight, height,
 activity level, goal, diet preference) and generates:
 
-- BMR / TDEE and a daily calorie target
 - Macro targets (protein / carbs / fat, in grams)
 - A sample daily meal plan matched to their diet preference
 - A full weekly training split matched to their goal and available days
@@ -11,7 +10,6 @@ activity level, goal, diet preference) and generates:
 ## Run it
 
 ```bash
-cd fitcoach
 pip install flask
 python app.py
 ```
@@ -44,12 +42,6 @@ fitcoach/
 │   └── js/main.js          # Form submit, fetch, render results
 └── README.md
 ```
-
-## Customizing
-
-- Add more foods: edit `FOOD_LIBRARY` in `app.py`
-- Add more exercises: edit `EXERCISE_POOLS` in `app.py`
-- Change calorie/macro rules: edit `GOAL_CALORIE_ADJUST` and `GOAL_MACROS`
 
 ## Disclaimer
 
