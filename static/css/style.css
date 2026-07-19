@@ -1,0 +1,495 @@
+/* ==========================================================================
+   CoachLine — Training Log visual identity
+   Palette: graphite base, chalk text, brass/amber + slate-teal + olive accents
+   Display: Oswald (condensed, scoreboard). Body: IBM Plex Sans.
+   Data/numbers: IBM Plex Mono (stopwatch-readout feel).
+   ========================================================================== */
+
+:root {
+  --bg: #1B1E21;
+  --surface: #24282C;
+  --surface-2: #2B3034;
+  --line: #3A4045;
+  --text: #ECEBE6;
+  --text-dim: #9AA1A6;
+  --text-faint: #6B7176;
+
+  --accent: #E8A33D;      /* brass / amber — primary, protein, CTA */
+  --accent-soft: #3A2F1E;
+  --teal: #5C8A9A;        /* carbs, secondary data */
+  --olive: #8FA35E;       /* fat, rest/recovery */
+  --danger: #B5544A;
+
+  --radius: 3px;
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* subtle grain / texture overlay so the flat graphite doesn't feel plasticky */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  z-index: 999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------- header ---------------------------------- */
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+}
+
+.logo-accent { color: var(--accent); }
+
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------- hero ---------------------------------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 56px;
+  padding: 72px 0 88px;
+  align-items: start;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 4vw, 3.1rem);
+  line-height: 1.08;
+  letter-spacing: 0.005em;
+  margin: 0 0 22px;
+}
+
+.lede {
+  color: var(--text-dim);
+  font-size: 1.02rem;
+  max-width: 46ch;
+}
+
+.lede.small { max-width: none; font-size: 0.95rem; margin-top: 6px; }
+
+/* ---------------------------------- cards / form ---------------------------------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.form-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.field input,
+.field select {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 11px 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+  appearance: none;
+}
+
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239AA1A6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 32px;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--accent);
+}
+
+.submit-btn {
+  margin-top: 6px;
+  background: var(--accent);
+  color: #201804;
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.submit-btn:hover { filter: brightness(1.08); }
+.submit-btn:active { transform: translateY(1px); }
+.submit-btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+
+.disclaimer {
+  font-size: 0.76rem;
+  color: var(--text-faint);
+  margin: 0;
+}
+
+/* ---------------------------------- results ---------------------------------- */
+
+.results { padding-bottom: 100px; }
+.results.hidden { display: none; }
+
+.results-header {
+  margin-top: 64px;
+  margin-bottom: 26px;
+  border-top: 1px solid var(--line);
+  padding-top: 34px;
+}
+
+.results-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* numbers: dial + macros */
+
+.numbers-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+}
+
+.dial-card {
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.dial-svg { width: 100%; max-width: 220px; }
+
+.dial-track {
+  fill: none;
+  stroke: var(--surface-2);
+  stroke-width: 12;
+}
+
+.dial-progress {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 12;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 110px 110px;
+  stroke-dasharray: 596.9;
+  stroke-dashoffset: 596.9;
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dial-value {
+  font-family: var(--font-mono);
+  font-size: 2.1rem;
+  font-weight: 600;
+  fill: var(--text);
+}
+
+.dial-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  fill: var(--text-faint);
+}
+
+.dial-sub {
+  display: flex;
+  gap: 22px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.dial-sub strong { color: var(--text); font-weight: 600; }
+
+.macro-card {
+  padding: 26px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+
+.macro-card h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin: 0 0 4px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.macro-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 64px;
+  align-items: center;
+  gap: 14px;
+}
+
+.macro-label {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.dot-protein { background: var(--accent); }
+.dot-carbs { background: var(--teal); }
+.dot-fat { background: var(--olive); }
+
+.macro-bar {
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.macro-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 6px;
+  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fill-protein { background: var(--accent); }
+.fill-carbs { background: var(--teal); }
+.fill-fat { background: var(--olive); }
+
+.macro-value {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-align: right;
+  color: var(--text);
+}
+
+/* meal grid */
+
+.meal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.meal-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  position: relative;
+}
+
+.meal-card::before {
+  content: attr(data-index);
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-faint);
+}
+
+.meal-card h4 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+
+.meal-card p {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.diet-tip {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border-left: 3px solid var(--teal);
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  color: var(--text-dim);
+}
+
+/* weekly training strip */
+
+.week-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+.day-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.day-card.rest {
+  background: transparent;
+  border-style: dashed;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-faint);
+}
+
+.day-name {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 4px;
+}
+
+.day-focus {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: var(--olive);
+  margin-bottom: 12px;
+}
+
+.day-card.rest .day-focus { color: var(--text-dim); margin-bottom: 0; }
+
+.exercise-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exercise-list li {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  border-top: 1px solid var(--line);
+  padding-top: 7px;
+}
+
+.exercise-list li strong {
+  display: block;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.82rem;
+  margin-bottom: 2px;
+}
+
+/* ---------------------------------- footer ---------------------------------- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 22px 0;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+/* ---------------------------------- responsive ---------------------------------- */
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .numbers-grid { grid-template-columns: 1fr; }
+  .meal-grid { grid-template-columns: repeat(2, 1fr); }
+  .week-strip { grid-template-columns: repeat(2, 1fr); }
+  .field-row { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
